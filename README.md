@@ -3,31 +3,38 @@
 *[English version](README.en.md)*
 
 Ein Skill für **Microsoft 365 Copilot in PowerPoint**, der die benutzerdefinierten
-Farben einer Präsentation sichtbar und bearbeitbar macht.
+Farben einer Präsentation bearbeitbar macht.
 
-PowerPoint kann bis zu 50 benutzerdefinierte Farben speichern. Es ist nicht möglich, diese benutzerdefinierten Farben in PowerPoint zu bearbeiten. Dieser Skill legt sie als Raster auf eine
-Folie: zehn Spalten, fünf Zeilen, eine Position je Quadrat. Farben ändern,
-ergänzen, benennen oder leer lassen geschieht dann direkt auf der Folie. Ein
-zweiter Aufruf schreibt die Farben entsprechend dem Raster ins Design zurück.
+PowerPoint speichert bis zu 50 benutzerdefinierte Farben, bietet aber keine
+Oberfläche, um sie zu verwalten. Der Skill legt sie als Raster auf eine Folie:
+zehn Spalten, fünf Zeilen, eine Position je Quadrat. Dort ändert, ergänzt,
+benennt oder leert man sie. Ein zweiter Aufruf schreibt das Raster zurück ins
+Design.
 
 ## Voraussetzungen
 
 - Microsoft 365 Copilot in PowerPoint mit aktivierten Skills
 
-Mehr braucht es nicht: Python 3.12 und `python-pptx` sind in der
-Skill-Laufzeit bereits vorhanden, und der Zugriff auf die geöffnete Datei ist
-lesend wie schreibend möglich. Gemessen am 09.09.2026, Einzelheiten in
-[powerpoint-copilot-skills-guide](https://github.com/praesentare/powerpoint-copilot-skills-guide),
-Kapitel 5.2.1.
+Sonst nichts. Python und `python-pptx` bringt die Skill-Laufzeit mit.
 
 ## Installation
 
-**Organisationsweit:** Das ZIP aus den [Releases](../../releases) bzw. nach dem
-Bauen aus `dist/` im Microsoft-365-Admin-Center unter „Agents > Tools > Skills“ hochladen und der gewünschten Nutzergruppe zuweisen.
+Das ZIP aus den [Releases](../../releases) im Microsoft-365-Admin-Center unter
+„Agents > Tools > Skills“ hochladen und der gewünschten Nutzergruppe zuweisen.
 
-## Aufruf
+## Anwendung
 
-In PowerPoint mit Copilot, jeweils gleichwertig auf Deutsch und Englisch:
+Ein Beispiel, vom Aufruf bis zur geänderten Farbe:
+
+1. In PowerPoint bei Copilot `edit-custom-colors-praesentare` eingeben.
+2. Am Ende der Präsentation entsteht eine Folie mit 50 Quadraten. Belegte
+   Positionen zeigen ihre Farbe, freie bleiben transparent.
+3. Ein Quadrat anders einfärben, ein leeres füllen, in ein Quadrat einen Namen
+   schreiben.
+4. `edit-custom-colors-praesentare speichern` eingeben. Die Farben stehen im
+   Design und erscheinen in jeder Farbauswahl der Präsentation.
+
+Alle Aufrufe, deutsch und englisch gleichwertig:
 
 | Aufruf | Wirkung |
 |---|---|
@@ -35,19 +42,19 @@ In PowerPoint mit Copilot, jeweils gleichwertig auf Deutsch und Englisch:
 | `edit-custom-colors-praesentare load` bzw. `laden` | Raster auf einer neuen Folie anlegen |
 | `edit-custom-colors-praesentare save` bzw. `speichern` | Raster zurück ins Design schreiben |
 
-## Was dabei passiert
+## Was der Skill dabei tut
 
-**Laden** liest `a:custClrLst` aus `ppt/theme/theme1.xml` aus und
-baut daraus am Ende der Präsentation eine neue Folie mit 50 Quadraten
-(`PCL_CustomColor_01` bis `PCL_CustomColor_50`). Dieses Raster ist ein Abbild der benutzerdefinierten Farben. Sollten noch keine Farben definiert sein, bleiben alle Quadrate leer.
+**Laden** liest `a:custClrLst` aus `ppt/theme/theme1.xml` und baut daraus die
+Rasterfolie mit 50 Quadraten, benannt `PCL_CustomColor_01` bis
+`PCL_CustomColor_50`. Sind noch keine Farben definiert, bleiben alle Quadrate
+leer.
 
-**Speichern** liest die Füllfarben und Beschriftungen der Quadrate und schreibt die Werte zurück. Der
-Text im Quadrat wird zum Farbnamen; ohne Text nimmt der Skill den Hexwert mit
-führendem `#`. Leere Quadrate bleiben Leerstellen: sie
-werden als Eintrag mit leerem Namen und `FFFFFF`
-geschrieben, damit nachfolgende Farben ihre Position im Raster behalten. Hinter der letzten
-belegten Position endet die Liste. Folien und Shape-Füllungen bleiben dabei
-unberührt.
+**Speichern** liest Füllfarbe und Beschriftung jedes Quadrats. Der Text im
+Quadrat wird zum Farbnamen; ohne Text nimmt der Skill den Hexwert mit führendem
+`#`. Leere Quadrate zwischen belegten bleiben erhalten: Der Skill schreibt sie
+als Eintrag mit leerem Namen und dem Wert `FFFFFF`. So behalten die folgenden
+Farben ihre Position. Hinter der letzten belegten Position endet die Liste.
+Folien und Formen bleiben unverändert.
 
 ## Paket selbst bauen (Windows)
 
@@ -56,8 +63,7 @@ powershell -ExecutionPolicy Bypass -File build.ps1
 ```
 
 Das Skript liest die Version aus `package/manifest.json` und legt
-`dist/edit-custom-colors-praesentare-v<version>.zip` an. Die Versionsnummer ist
-Bestandteil des Dateinamens, damit ausgelieferte Stände unterscheidbar bleiben.
+`dist/edit-custom-colors-praesentare-v<version>.zip` an.
 
 ## Aufbau des Repos
 
@@ -74,13 +80,6 @@ build.ps1                ← baut das versionierte ZIP nach dist/
 dist/                    ← Bauergebnisse, nicht versioniert
 ```
 
-Das Python-Skript ist bewusst dicht geschrieben. Es kommt ohne Abhängigkeiten
-außer `python-pptx` aus und arbeitet direkt auf dem OOXML der Datei.
-
 ## Lizenz
 
-[BSD Zero Clause License](LICENSE), Kennung `0BSD`. Nutzung, Änderung,
-Weitergabe und Verkauf sind ohne jede Auflage erlaubt; nicht einmal der
-Copyright-Hinweis muss mitwandern. Namensnennung ist also erwünscht, aber nicht
-verlangt. Über einen Hinweis auf
-[praesentare.com](https://praesentare.com) freue ich mich trotzdem.
+[0BSD](LICENSE). Kommerzielle Nutzung erlaubt, Namensnennung nicht verlangt.

@@ -3,33 +3,37 @@
 *[Deutsche Fassung](README.md)*
 
 A skill for **Microsoft 365 Copilot in PowerPoint** that makes a presentation's
-custom colors visible and editable.
+custom colors editable.
 
-PowerPoint can store up to 50 custom colors. There is no way to edit those
-custom colors in PowerPoint itself. This skill puts them on a slide as a grid:
-ten columns, five rows, one position per square. Changing, adding, naming or
-clearing a color then happens right there on the slide. A second call writes the
-colors back into the theme as laid out in the grid.
+PowerPoint stores up to 50 custom colors but offers no interface to manage them.
+The skill puts them on a slide as a grid: ten columns, five rows, one position
+per square. You change, add, name or clear them right there. A second call
+writes the grid back into the theme.
 
 ## Requirements
 
 - Microsoft 365 Copilot in PowerPoint with skills enabled
 
-Nothing else: Python 3.12 and `python-pptx` are already present in the skill
-runtime, and the open file can be both read and written. Measured on 9 September
-2026; details in
-[powerpoint-copilot-skills-guide](https://github.com/praesentare/powerpoint-copilot-skills-guide),
-chapter 5.2.1.
+Nothing else. Python and `python-pptx` come with the skill runtime.
 
 ## Installation
 
-**Organization-wide:** upload the ZIP from the [Releases](../../releases), or
-from `dist/` once you have built it, in the Microsoft 365 admin center under
-"Agents > Tools > Skills" and assign it to the intended group of users.
+Upload the ZIP from the [Releases](../../releases) in the Microsoft 365 admin
+center under "Agents > Tools > Skills" and assign it to the intended group of
+users.
 
-## Invocation
+## Usage
 
-In PowerPoint with Copilot. German and English wording work alike:
+One example, from the call to the changed color:
+
+1. In PowerPoint, type `edit-custom-colors-praesentare` in Copilot.
+2. A slide with 50 squares appears at the end of the presentation. Occupied
+   positions show their color, free ones stay transparent.
+3. Recolor a square, fill an empty one, type a name into a square.
+4. Type `edit-custom-colors-praesentare save`. The colors are in the theme and
+   show up in every color picker of the presentation.
+
+All calls, German and English alike:
 
 | Call | Effect |
 |---|---|
@@ -37,19 +41,18 @@ In PowerPoint with Copilot. German and English wording work alike:
 | `edit-custom-colors-praesentare load` or `laden` | build the grid on a new slide |
 | `edit-custom-colors-praesentare save` or `speichern` | write the grid back into the theme |
 
-## What happens
+## What the skill does
 
-**Load** reads `a:custClrLst` from `ppt/theme/theme1.xml` and appends a new slide
-to the presentation holding 50 squares (`PCL_CustomColor_01` through
-`PCL_CustomColor_50`). That grid is a picture of the custom colors. If no colors
-are defined yet, every square stays empty.
+**Load** reads `a:custClrLst` from `ppt/theme/theme1.xml` and builds the grid
+slide with 50 squares, named `PCL_CustomColor_01` through `PCL_CustomColor_50`.
+With no colors defined yet, every square stays empty.
 
-**Save** reads the squares' fill colors and labels and writes the values back.
-The text inside a square becomes the color name; without text the skill uses the
-hex value including the leading `#`. Empty squares stay gaps: they are written as
-an entry with an empty name and `FFFFFF`, so the colors after them keep their
-position in the grid. The list ends after the last occupied position. Slides and
-shape fills are left untouched.
+**Save** reads each square's fill color and label. The text inside a square
+becomes the color name; without text the skill uses the hex value with a leading
+`#`. Empty squares between occupied ones are preserved: the skill writes them as
+an entry with an empty name and the value `FFFFFF`, so the colors after them
+keep their position. The list ends after the last occupied position. Slides and
+shapes stay untouched.
 
 ## Building the package (Windows)
 
@@ -58,8 +61,7 @@ powershell -ExecutionPolicy Bypass -File build.ps1
 ```
 
 The script reads the version from `package/manifest.json` and writes
-`dist/edit-custom-colors-praesentare-v<version>.zip`. The version is part of the
-file name so that shipped builds stay distinguishable.
+`dist/edit-custom-colors-praesentare-v<version>.zip`.
 
 ## Repository layout
 
@@ -76,13 +78,6 @@ build.ps1                ← builds the versioned ZIP into dist/
 dist/                    ← build output, not versioned
 ```
 
-The Python script is deliberately terse. It needs no dependency beyond
-`python-pptx` and works directly on the file's OOXML.
-
 ## License
 
-[BSD Zero Clause License](LICENSE), SPDX `0BSD`. Use, modification,
-distribution and sale are permitted without any condition; not even the
-copyright notice has to travel along. Attribution is therefore welcome but not
-required. A pointer to [praesentare.com](https://praesentare.com) is
-appreciated all the same.
+[0BSD](LICENSE). Commercial use permitted, attribution not required.
