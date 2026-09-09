@@ -16,8 +16,8 @@ zweiter Aufruf schreibt die Farben entsprechend dem Raster ins Design zurück.
 
 ## Installation
 
-**Organisationsweit:** Das ZIP aus `dist/` (oder aus den
-[Releases](../../releases)) im Microsoft-365-Admin-Center unter „Agents > Tools > Skills“ hochladen und der gewünschten Nutzergruppe zuweisen.
+**Organisationsweit:** Das ZIP aus den [Releases](../../releases) bzw. nach dem
+Bauen aus `dist/` im Microsoft-365-Admin-Center unter „Agents > Tools > Skills“ hochladen und der gewünschten Nutzergruppe zuweisen.
 
 ## Aufruf
 

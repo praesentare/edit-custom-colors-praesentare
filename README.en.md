@@ -17,9 +17,9 @@ colors back into the theme as laid out in the grid.
 
 ## Installation
 
-**Organization-wide:** upload the ZIP from `dist/` (or from the
-[Releases](../../releases)) in the Microsoft 365 admin center under "Agents >
-Tools > Skills" and assign it to the intended group of users.
+**Organization-wide:** upload the ZIP from the [Releases](../../releases), or
+from `dist/` once you have built it, in the Microsoft 365 admin center under
+"Agents > Tools > Skills" and assign it to the intended group of users.
 
 ## Invocation
 
