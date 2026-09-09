@@ -1,5 +1,6 @@
 # Builds the versioned skill package from package/ into dist/.
-# The version is read from package/manifest.json, so it is set in exactly one place.
+# The version comes from package/manifest.json, the file name from the skill
+# folder, so both are set in exactly one place.
 
 $ErrorActionPreference = 'Stop'
 
@@ -7,7 +8,7 @@ $root     = Split-Path -Parent $MyInvocation.MyCommand.Path
 $source   = Join-Path $root 'package'
 $dist     = Join-Path $root 'dist'
 $manifest = Get-Content (Join-Path $source 'manifest.json') -Raw | ConvertFrom-Json
-$name     = $manifest.name.full
+$name     = (Get-ChildItem -Path (Join-Path $source 'skills') -Directory | Select-Object -First 1).Name
 $version  = $manifest.version
 $target   = Join-Path $dist "$name-v$version.zip"
 
