@@ -5,36 +5,19 @@
 Ein Skill für **Microsoft 365 Copilot in PowerPoint**, der die benutzerdefinierten
 Farben einer Präsentation sichtbar und bearbeitbar macht.
 
-PowerPoint speichert bis zu 50 benutzerdefinierte Farben positionsgebunden im
-Design. Über die Oberfläche kommt man an diese Liste nur einzeln und in der
-Reihenfolge, die PowerPoint vorgibt. Dieser Skill legt sie als Raster auf eine
+PowerPoint kann bis zu 50 benutzerdefinierte Farben speichern. Es ist nicht möglich, diese benutzerdefinierten Farben in PowerPoint zu bearbeiten. Dieser Skill legt sie als Raster auf eine
 Folie: zehn Spalten, fünf Zeilen, eine Position je Quadrat. Farben ändern,
 ergänzen, benennen oder leer lassen geschieht dann direkt auf der Folie. Ein
-zweiter Aufruf schreibt das Raster positionsgetreu ins Design zurück.
+zweiter Aufruf schreibt die Farben entsprechend dem Raster ins Design zurück.
 
 ## Voraussetzungen
 
 - Microsoft 365 Copilot in PowerPoint mit aktivierten Skills
-- Python 3 mit `python-pptx`
-- Die Präsentation liegt lokal und ist beschreibbar
 
 ## Installation
 
-**Persönlich, nur für Dich:** Den Ordner
-`package/skills/edit-custom-colors-praesentare` in den lokalen Skill-Ordner
-kopieren:
-
-```text
-%OneDrive%\Dokumente\Copilot\Microsoft PowerPoint\skills\
-```
-
-Ohne das mitgelieferte Skript bleibt davon allerdings nur der Anweisungstext
-übrig, und der Skill kann nichts ausführen. Für den vollen Funktionsumfang ist
-der zweite Weg gedacht.
-
 **Organisationsweit:** Das ZIP aus `dist/` (oder aus den
-[Releases](../../releases)) im Microsoft-365-Admin-Center unter „Integrierte
-Apps“ hochladen und der gewünschten Nutzergruppe zuweisen.
+[Releases](../../releases)) im Microsoft-365-Admin-Center unter „Agents > Tools > Skills“ hochladen und der gewünschten Nutzergruppe zuweisen.
 
 ## Aufruf
 
@@ -48,21 +31,19 @@ In PowerPoint mit Copilot, jeweils gleichwertig auf Deutsch und Englisch:
 
 ## Was dabei passiert
 
-**Laden** liest `a:custClrLst` aus `ppt/theme/theme1.xml` positionsgetreu aus und
+**Laden** liest `a:custClrLst` aus `ppt/theme/theme1.xml` aus und
 baut daraus am Ende der Präsentation eine neue Folie mit 50 Quadraten
-(`PCL_CustomColor_01` bis `PCL_CustomColor_50`). Belegte Positionen tragen ihre
-Farbe, leere bleiben transparent, jedes Quadrat bekommt eine schwarze Kontur von
-0,75 pt.
+(`PCL_CustomColor_01` bis `PCL_CustomColor_50`). Dieses Raster ist ein Abbild der benutzerdefinierten Farben. Sollten noch keine Farben definiert sein, bleiben alle Quadrate leer.
 
-**Speichern** liest die Füllfarben und Beschriftungen der Quadrate zurück. Der
+**Speichern** liest die Füllfarben und Beschriftungen der Quadrate und schreibt die Werte zurück. Der
 Text im Quadrat wird zum Farbnamen; ohne Text nimmt der Skill den Hexwert mit
-führendem `#`. Leerstellen zwischen belegten Positionen bleiben Leerstellen: sie
-werden als Eintrag mit leerem Namen und dem reservierten Wert `FFFFFF`
-geschrieben, damit sich nachfolgende Farben nicht verschieben. Hinter der letzten
+führendem `#`. Leere Quadrate bleiben Leerstellen: sie
+werden als Eintrag mit leerem Namen und `FFFFFF`
+geschrieben, damit nachfolgende Farben ihre Position im Raster behalten. Hinter der letzten
 belegten Position endet die Liste. Folien und Shape-Füllungen bleiben dabei
 unberührt.
 
-## Paket selbst bauen
+## Paket selbst bauen (Windows)
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File build.ps1
