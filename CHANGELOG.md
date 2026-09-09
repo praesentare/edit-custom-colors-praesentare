@@ -3,10 +3,16 @@
 Versionsnummern folgen dem Feld `version` in `package/manifest.json` und sind
 Bestandteil des ZIP-Dateinamens.
 
+## 1.0.4 – 2026-09-09
+
+- Lizenz auf `0BSD` gezogen, in der `SKILL.md` wie im Repo. `0BSD` ist die
+  Lizenz für alles Eigene; MIT-0 aus 1.0.3 wollte dasselbe, war aber nicht die
+  hier verwendete Kennung.
+
 ## 1.0.3 – 2026-09-09
 
-- `license` in der `SKILL.md` steht jetzt auf `MIT-0` statt auf `Proprietary`
-  und stimmt damit mit der Lizenz dieses Repos überein.
+- `license` in der `SKILL.md` steht nicht mehr auf `Proprietary`, sondern auf
+  einer Lizenz, die zum Repo passt.
 
 ## 1.0.2 – 2026-09-07
 

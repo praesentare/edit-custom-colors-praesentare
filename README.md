@@ -92,6 +92,8 @@ außer `python-pptx` aus und arbeitet direkt auf dem OOXML der Datei.
 
 ## Lizenz
 
-[MIT No Attribution](LICENSE). Kommerzielle Nutzung ausdrücklich erlaubt, eine
-Namensnennung ist nicht verlangt. Über einen Hinweis auf
+[BSD Zero Clause License](LICENSE), Kennung `0BSD`. Nutzung, Änderung,
+Weitergabe und Verkauf sind ohne jede Auflage erlaubt; nicht einmal der
+Copyright-Hinweis muss mitwandern. Namensnennung ist also erwünscht, aber nicht
+verlangt. Über einen Hinweis auf
 [praesentare.com](https://praesentare.com) freue ich mich trotzdem.

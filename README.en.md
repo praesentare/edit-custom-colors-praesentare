@@ -89,6 +89,8 @@ The Python script is deliberately terse. It needs no dependency beyond
 
 ## License
 
-[MIT No Attribution](LICENSE). Commercial use is expressly allowed and
-attribution is not required. A pointer to
-[praesentare.com](https://praesentare.com) is welcome all the same.
+[BSD Zero Clause License](LICENSE), SPDX `0BSD`. Use, modification,
+distribution and sale are permitted without any condition; not even the
+copyright notice has to travel along. Attribution is therefore welcome but not
+required. A pointer to [praesentare.com](https://praesentare.com) is
+appreciated all the same.
