@@ -3,6 +3,11 @@
 Versionsnummern folgen dem Feld `version` in `package/manifest.json` und sind
 Bestandteil des ZIP-Dateinamens.
 
+## 1.0.3 – 2026-09-09
+
+- `license` in der `SKILL.md` steht jetzt auf `MIT-0` statt auf `Proprietary`
+  und stimmt damit mit der Lizenz dieses Repos überein.
+
 ## 1.0.2 – 2026-09-07
 
 - Umbenannt von `powerpoint-custom-color-grid` zu `edit-custom-colors-praesentare`.

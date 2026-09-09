@@ -1,11 +1,11 @@
 ---
 name: edit-custom-colors-praesentare
 description: Lädt die positionsgebundenen benutzerdefinierten Farben der aktuellen PowerPoint-Datei in ein 10-mal-5-Raster oder speichert die bearbeiteten Rasterfarben positionsgetreu zurück. Unterstützt load, laden, save und speichern; ohne Parameter wird load verwendet.
-license: Proprietary
+license: MIT-0
 compatibility: Benötigt Python 3, python-pptx und einen lokalen beschreibbaren PPTX-Pfad.
 metadata:
   author: Peter Claus Lamprecht
-  version: "1.0.2"
+  version: "1.0.3"
 ---
 
 # edit-custom-colors-praesentare
