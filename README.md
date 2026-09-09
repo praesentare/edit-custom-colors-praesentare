@@ -14,6 +14,12 @@ zweiter Aufruf schreibt die Farben entsprechend dem Raster ins Design zurück.
 
 - Microsoft 365 Copilot in PowerPoint mit aktivierten Skills
 
+Mehr braucht es nicht: Python 3.12 und `python-pptx` sind in der
+Skill-Laufzeit bereits vorhanden, und der Zugriff auf die geöffnete Datei ist
+lesend wie schreibend möglich. Gemessen am 09.09.2026, Einzelheiten in
+[powerpoint-copilot-skills-guide](https://github.com/praesentare/powerpoint-copilot-skills-guide),
+Kapitel 5.2.1.
+
 ## Installation
 
 **Organisationsweit:** Das ZIP aus den [Releases](../../releases) bzw. nach dem

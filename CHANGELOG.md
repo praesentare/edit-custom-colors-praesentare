@@ -3,6 +3,15 @@
 Versionsnummern folgen dem Feld `version` in `package/manifest.json` und sind
 Bestandteil des ZIP-Dateinamens.
 
+## 1.0.5 – 2026-09-09
+
+- `compatibility` sagt jetzt, dass die Copilot-Skill-Laufzeit Python 3 mit
+  `python-pptx` und den Zugriff auf die Datei mitbringt, statt es als
+  Anforderung an den Anwender zu formulieren. Beides ist am 09.09.2026 in einem
+  Tenant gemessen worden.
+- Die READMEs sagen dasselbe unter „Voraussetzungen“ und verweisen auf das
+  Kapitel 5.2.1 der Anleitung.
+
 ## 1.0.4 – 2026-09-09
 
 - Lizenz auf `0BSD` gezogen, in der `SKILL.md` wie im Repo. `0BSD` ist die

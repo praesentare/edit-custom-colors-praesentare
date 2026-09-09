@@ -15,6 +15,12 @@ colors back into the theme as laid out in the grid.
 
 - Microsoft 365 Copilot in PowerPoint with skills enabled
 
+Nothing else: Python 3.12 and `python-pptx` are already present in the skill
+runtime, and the open file can be both read and written. Measured on 9 September
+2026; details in
+[powerpoint-copilot-skills-guide](https://github.com/praesentare/powerpoint-copilot-skills-guide),
+chapter 5.2.1.
+
 ## Installation
 
 **Organization-wide:** upload the ZIP from the [Releases](../../releases), or
