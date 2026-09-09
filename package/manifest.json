@@ -1,0 +1,30 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.30/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.30",
+  "version": "1.0.2",
+  "id": "838f8a95-65f1-4e44-9d66-3bf0a3563786",
+  "developer": {
+    "name": "Peter Claus Lamprecht",
+    "websiteUrl": "https://praesentare.com",
+    "privacyUrl": "https://praesentare.com/datenschutz",
+    "termsOfUseUrl": "https://praesentare.com/impressum"
+  },
+  "name": {
+    "short": "edit-custom-colors",
+    "full": "edit-custom-colors-praesentare"
+  },
+  "description": {
+    "short": "Lädt und speichert 50 Farbpositionen.",
+    "full": "Bearbeitet benutzerdefinierte PowerPoint-Farben über ein positionsgetreues 10-mal-5-Raster mit deutscher und englischer Bedienung."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#1F4E79",
+  "agentSkills": [
+    {
+      "folder": "./skills/edit-custom-colors-praesentare"
+    }
+  ]
+}
